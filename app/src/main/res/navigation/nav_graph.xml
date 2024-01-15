@@ -39,4 +39,17 @@
         android:name="com.daniel.navigationtest.featurea.EndTripFragment"
         />
 
+    <action
+        android:id="@+id/action_global_to_dealsFragment_back_to_carrides_2"
+        app:destination="@+id/dealsFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"
+        />
+
+    <action
+        android:id="@+id/action_global_to_shopFrontFragment_root_2"
+        app:destination="@+id/shopFrontFragment"
+        app:popUpTo="@id/shopFrontFragment"
+        app:popUpToInclusive="false"/>
+
 </navigation>

@@ -33,7 +33,7 @@ class ActiveBookingFragment : BaseComposeFragment() {
                 findNavController().navigate(R.id.action_activeBookingFragment_to_endTripFragment)
             },
             onClickDeals = {
-                findNavController().navigate(R.id.action_global_to_dealsFragment_back_to_carrides)
+                findNavController().navigate(R.id.action_global_to_dealsFragment_back_to_carrides_2)
             },
         ) {
             findNavController().popBackStack()

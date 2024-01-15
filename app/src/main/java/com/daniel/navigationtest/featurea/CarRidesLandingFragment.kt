@@ -1,7 +1,5 @@
 package com.daniel.navigationtest.featurea
 
-import android.os.Bundle
-import android.view.View
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

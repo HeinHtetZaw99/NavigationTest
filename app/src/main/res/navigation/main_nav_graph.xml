@@ -18,7 +18,7 @@
             app:destination="@id/promoFragment" />
         <action
             android:id="@+id/action_shopFrontFragment_to_featureAActivity"
-            app:destination="@id/featureAActivity" />
+            app:destination="@id/nav_graph" />
     </fragment>
 
     <fragment
@@ -41,17 +41,19 @@
             app:argType="string"/>
         <action
             android:id="@+id/action_promoFragment_to_featureAActivity"
-            app:destination="@id/featureAActivity" />
+            app:destination="@id/nav_graph" />
     </fragment>
+
+    <include app:graph="@navigation/nav_graph" />
 
     <activity
         android:name="com.daniel.navigationtest.featurea.CarRidesFeatureActivity"
-        android:id="@+id/featureAActivity"/>
+        android:id="@+id/nav_graph"/>
 
     <action
         android:id="@+id/action_global_to_dealsFragment_back_to_carrides"
         app:destination="@+id/dealsFragment"
-        app:popUpTo="@id/featureAActivity" />
+        app:popUpTo="@id/nav_graph" />
 
     <action
         android:id="@+id/action_global_to_shopFrontFragment_root"

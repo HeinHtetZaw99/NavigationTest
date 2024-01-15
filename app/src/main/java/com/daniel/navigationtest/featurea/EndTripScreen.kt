@@ -29,7 +29,7 @@ class EndTripFragment : BaseComposeFragment() {
     @Composable
     override fun ScreenContent() {
         EndTripScreen {
-            findNavController().navigate(R.id.action_global_to_shopFrontFragment_root)
+            findNavController().navigate(R.id.action_global_to_shopFrontFragment_root_2)
         }
     }
 }
