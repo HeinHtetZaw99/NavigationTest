@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/shopFrontFragment">
+
+    <fragment
+        android:name="com.daniel.navigationtest.home.ShopFrontFragment"
+        android:id="@+id/shopFrontFragment">
+        <argument
+            android:name="shopFrontInitialData"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_shopFrontFragment_to_dealsFragment"
+            app:destination="@id/dealsFragment" />
+        <action
+            android:id="@+id/action_shopFrontFragment_to_promoFragment"
+            app:destination="@id/promoFragment" />
+        <action
+            android:id="@+id/action_shopFrontFragment_to_featureAActivity"
+            app:destination="@id/featureAActivity" />
+    </fragment>
+
+    <fragment
+        android:name="com.daniel.navigationtest.home.DealsFragment"
+        android:id="@+id/dealsFragment">
+        <argument
+            android:name="dealsInitialData"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_dealsFragment_to_promoFragment"
+            app:destination="@id/promoFragment" />
+
+    </fragment>
+
+    <fragment
+        android:name="com.daniel.navigationtest.home.PromoFragment"
+        android:id="@+id/promoFragment">
+        <argument
+            android:name="promoInitialData"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_promoFragment_to_featureAActivity"
+            app:destination="@id/featureAActivity" />
+    </fragment>
+
+    <activity
+        android:name="com.daniel.navigationtest.featurea.CarRidesFeatureActivity"
+        android:id="@+id/featureAActivity"/>
+
+    <action
+        android:id="@+id/action_global_to_dealsFragment_back_to_carrides"
+        app:destination="@+id/dealsFragment"
+        app:popUpTo="@id/featureAActivity" />
+
+    <action
+        android:id="@+id/action_global_to_shopFrontFragment_root"
+        app:destination="@+id/shopFrontFragment"
+        app:popUpTo="@id/shopFrontFragment"
+        app:popUpToInclusive="false"/>
+
+</navigation>
