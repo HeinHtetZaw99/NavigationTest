@@ -10,8 +10,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.daniel.navigationtest.BaseComposeFragment
 import com.daniel.navigationtest.R
+import com.daniel.navigationtest.domain.UserPrefRepo
 
 class ShopFrontFragment : BaseComposeFragment() {
 
@@ -29,7 +36,10 @@ class ShopFrontFragment : BaseComposeFragment() {
 
     @Composable
     override fun ScreenContent() {
+        val enableNgp by viewModel.shouldUseNgpFeature.collectAsState()
+
         ShopFrontScreen(
+            enableNgp = enableNgp,
             onClickCarRides = {
                 findNavController().navigate(R.id.action_shopFrontFragment_to_featureAActivity)
             },
@@ -39,6 +49,7 @@ class ShopFrontFragment : BaseComposeFragment() {
             onClickPromoCode = {
                 findNavController().navigate(R.id.action_shopFrontFragment_to_promoFragment)
             },
+            onToggleNgpFeature = viewModel::onToggleNgpFeature
         )
     }
 
@@ -50,31 +61,62 @@ class ShopFrontFragment : BaseComposeFragment() {
 
 @Composable
 fun ShopFrontScreen(
+    enableNgp: Boolean,
     onClickCarRides: () -> Unit,
     onClickDeals: () -> Unit,
     onClickPromoCode: () -> Unit,
+    onToggleNgpFeature: (Boolean) -> Unit,
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(color = Color.Blue.copy(green = 0.1f, blue = 0.2f)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(text = "You are now At ShopFront", modifier = Modifier.background(Color.Transparent), color = Color.Yellow, fontSize = 18.sp)
+        Text(
+            text = "You are now At ShopFront",
+            modifier = Modifier.background(Color.Transparent),
+            color = Color.Yellow,
+            fontSize = 18.sp
+        )
         Spacer(modifier = Modifier.height(48.dp))
-        Button(modifier = Modifier.padding(10.dp).height(48.dp), onClick = onClickCarRides) {
+
+        Text(
+            text = "Use NGP Feature?",
+            fontSize = 12.sp,
+            color = Color.Gray,
+        )
+        Switch(checked = enableNgp, onCheckedChange = {
+            onToggleNgpFeature(it)
+        })
+        Spacer(modifier = Modifier.height(48.dp))
+
+        Button(
+            modifier = Modifier
+                .padding(10.dp)
+                .height(48.dp), onClick = onClickCarRides
+        ) {
             Text(text = "GO TO CarRides", Modifier.background(Color.Transparent))
         }
 
         Spacer(modifier = Modifier.height(48.dp))
 
-        Button(modifier = Modifier.padding(10.dp).height(48.dp), onClick = onClickPromoCode) {
+        Button(
+            modifier = Modifier
+                .padding(10.dp)
+                .height(48.dp), onClick = onClickPromoCode
+        ) {
             Text(text = "GO TO PromoCodes")
         }
 
         Spacer(modifier = Modifier.height(48.dp))
 
-        Button(modifier = Modifier.padding(10.dp).height(48.dp), onClick = onClickDeals) {
+        Button(
+            modifier = Modifier
+                .padding(10.dp)
+                .height(48.dp), onClick = onClickDeals
+        ) {
             Text(text = "GO TO Deals")
         }
     }
@@ -83,8 +125,11 @@ fun ShopFrontScreen(
 @Preview
 @Composable
 fun HomePreview() {
-    ShopFrontScreen({
-    }, {
-    }, {
-    })
+    ShopFrontScreen(
+        true,
+        {},
+        {},
+        {},
+        {},
+    )
 }

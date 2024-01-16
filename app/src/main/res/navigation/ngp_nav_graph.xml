@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/carRidesFragment">
+
+    <fragment
+        android:id="@+id/carRidesFragment"
+        android:name="com.daniel.navigationtest.ngp.featurea.CarRidesLandingFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_carRidesFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.daniel.navigationtest.ngp.featurea.BookingFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_bookingFragment_to_activeBookingFragment"
+            app:destination="@id/activeBookingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/activeBookingFragment"
+        android:name="com.daniel.navigationtest.featurea.ActiveBookingFragment">
+        <action
+            android:id="@+id/action_activeBookingFragment_to_endTripFragment"
+            app:destination="@id/endTripFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/endTripFragment"
+        android:name="com.daniel.navigationtest.featurea.EndTripFragment"
+        />
+
+    <action
+        android:id="@+id/action_global_to_dealsFragment_back_to_carrides_2"
+        app:destination="@+id/dealsFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"
+        />
+
+    <action
+        android:id="@+id/action_global_to_shopFrontFragment_root_2"
+        app:destination="@+id/shopFrontFragment"
+        app:popUpTo="@id/shopFrontFragment"
+        app:popUpToInclusive="false"/>
+
+</navigation>

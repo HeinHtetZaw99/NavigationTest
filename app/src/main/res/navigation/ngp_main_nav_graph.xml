@@ -44,7 +44,7 @@
             app:destination="@id/nav_graph" />
     </fragment>
 
-    <include app:graph="@navigation/nav_graph" />
+    <include app:graph="@navigation/ngp_nav_graph" />
 
     <action
         android:id="@+id/action_global_to_dealsFragment_back_to_carrides"
