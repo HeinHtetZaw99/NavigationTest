@@ -20,21 +20,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.daniel.navigationtest.BaseComposeFragment
 import com.daniel.navigationtest.R
 
 class DealsFragment : BaseComposeFragment() {
 
     private lateinit var viewModel: HomeViewModel
+    private var dealsFeatureEntryMode: Boolean = false
 
     @Composable
     override fun ScreenContent() {
         DealsScreen(
+            dealsFeatureEntryMode,
             onClickPromoCodes = {
                 findNavController().navigate(R.id.action_dealsFragment_to_promoFragment)
             },
             onClickBack = {
-                findNavController().popBackStack()
+                if (!findNavController().popBackStack()) {
+                    activity?.onBackPressedDispatcher?.onBackPressed()
+                }
             },
         )
     }
@@ -42,27 +47,34 @@ class DealsFragment : BaseComposeFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        dealsFeatureEntryMode = navArgs<DealsFragmentArgs>().value.dealFeatureEntry
     }
 }
 
 @Composable
 fun DealsScreen(
+    dealsOnlyMode: Boolean = false,
     onClickPromoCodes: () -> Unit,
     onClickBack: () -> Unit,
 ) {
     Column {
         Column(
-            modifier = Modifier.fillMaxSize().
-            background(color = Color.Blue.copy(green = 0.1f, blue = 0.2f, red = 0.1f)),
+            modifier = Modifier.fillMaxSize()
+                .background(color = Color.Blue.copy(green = 0.1f, blue = 0.2f, red = 0.1f)),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(text = "You are now at Deals", modifier = Modifier.background(Color.Transparent), color = Color.Yellow, fontSize = 18.sp)
 
-            Spacer(modifier = Modifier.height(48.dp))
+            if (!dealsOnlyMode) {
+                Spacer(modifier = Modifier.height(48.dp))
 
-            Button(modifier = Modifier.padding(10.dp).height(48.dp), onClick = onClickPromoCodes) {
-                Text(text = "GO To PromoCodes")
+                Button(
+                    modifier = Modifier.padding(10.dp).height(48.dp),
+                    onClick = onClickPromoCodes,
+                ) {
+                    Text(text = "GO To PromoCodes")
+                }
             }
 
             Spacer(modifier = Modifier.height(48.dp))
@@ -77,5 +89,5 @@ fun DealsScreen(
 @Preview
 @Composable
 fun HomeAPreview() {
-    DealsScreen({}, {})
+    DealsScreen(false, {}, {})
 }

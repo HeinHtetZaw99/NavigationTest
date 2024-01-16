@@ -24,9 +24,12 @@
     <fragment
         android:name="com.daniel.navigationtest.home.DealsFragment"
         android:id="@+id/dealsFragment">
+
         <argument
-            android:name="dealsInitialData"
-            app:argType="string"/>
+            android:name="dealFeatureEntry"
+            android:defaultValue="false"
+            app:argType="boolean"/>
+
         <action
             android:id="@+id/action_dealsFragment_to_promoFragment"
             app:destination="@id/promoFragment" />
@@ -51,7 +54,8 @@
     <action
         android:id="@+id/action_global_to_dealsFragment_back_to_carrides"
         app:destination="@+id/dealsFragment"
-        app:popUpTo="@id/featureAActivity" />
+        app:popUpTo="@id/shopFrontFragment"
+        app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/action_global_to_shopFrontFragment_root"

@@ -28,9 +28,7 @@ class BookingFragment : BaseComposeFragment() {
 
     @Composable
     override fun ScreenContent() {
-        BookingScreen(onClickBooking = {
-            findNavController().navigate(R.id.action_bookingFragment_to_activeBookingFragment)
-        }) {
+        BookingScreen(onClickBooking = { findNavController().navigate(BookingFragmentDirections.actionBookingFragmentToActiveBookingFragment()) }) {
             findNavController().popBackStack()
         }
     }

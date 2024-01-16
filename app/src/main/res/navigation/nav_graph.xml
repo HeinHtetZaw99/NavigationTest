@@ -39,4 +39,18 @@
         android:name="com.daniel.navigationtest.featurea.EndTripFragment"
         />
 
+    <action
+        android:id="@+id/action_global_to_mainActivity"
+        app:destination="@id/mainActivity" />
+
+    <activity
+        android:name="com.daniel.navigationtest.MainActivity"
+        android:id="@+id/mainActivity">
+            <argument
+                android:name="deepLink"
+                app:nullable="true"
+                app:argType="string"/>
+    </activity>
+
+
 </navigation>

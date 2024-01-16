@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.daniel.navigationtest.BaseComposeFragment
 import com.daniel.navigationtest.R
+import com.daniel.navigationtest.home.DealsFragmentDirections
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -33,7 +34,7 @@ class ActiveBookingFragment : BaseComposeFragment() {
                 findNavController().navigate(R.id.action_activeBookingFragment_to_endTripFragment)
             },
             onClickDeals = {
-                findNavController().navigate(R.id.action_global_to_dealsFragment_back_to_carrides)
+                findNavController().navigate(ActiveBookingFragmentDirections.actionGlobalToMainActivity("deeplink://deals"))
             },
         ) {
             findNavController().popBackStack()
